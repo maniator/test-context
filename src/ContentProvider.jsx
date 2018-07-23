@@ -3,8 +3,6 @@ import { ServerConsumer } from "./serverContext";
 import { ContentStateProvider } from "./ContentStateProvider";
 
 const renderChildrenWithServerData = (props) => (state, ...rest) => {
-  console.log({ state, props, rest }, 'I AM DATA', ServerConsumer);
-
   return (
     <ContentStateProvider currentState={state} {...props} />
   );
@@ -12,9 +10,14 @@ const renderChildrenWithServerData = (props) => (state, ...rest) => {
 
 export class ContentProvider extends React.Component {
   render() {
-    // console.log({ Consumer }, 'CONTEXT is cool');
-    return (
-      <ServerConsumer>{renderChildrenWithServerData(this.props)}</ServerConsumer>
-    );
+    if (ServerConsumer._currentValue) {
+      console.log('load consumer');
+      return (
+        <ServerConsumer>{renderChildrenWithServerData(this.props)}</ServerConsumer>
+      );
+    } else {
+      console.log('load state');
+      return <ContentStateProvider currentState={null} {...this.props} />;
+    }
   }
 }
