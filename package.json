@@ -12,7 +12,7 @@
     "@wework/rivendell-components": "1.5.1",
     "@wework/rivendell-patterns": "1.3.0",
     "express": "4.16.3",
-    "lodash": "4.17.10",
+    "lodash": "4.17.21",
     "razzle": "2.2.0",
     "react": "16.4.1",
     "react-dom": "16.4.1",
